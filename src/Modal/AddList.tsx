@@ -1,4 +1,4 @@
-import { triggerAsyncId } from 'async_hooks';
+
 import React, { useState } from 'react';
 import './modal.css';
 
@@ -17,6 +17,7 @@ const AddList = (props: any) => {
                 title: title,
                 cards: []
             })
+            setTitle('')
             setIsValid(true)
             props.close()
         } else {

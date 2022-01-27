@@ -1,4 +1,5 @@
 import React from 'react';
+import { Draggable } from 'react-beautiful-dnd';
 import './Card.css'
 
 //Card interface
@@ -10,17 +11,24 @@ interface Card {
 }
 
 //component
-const Card = (props: Card) => {
+const Card = (props: any) => {
 
     //destructuration de props
-    const { id, title, description, creationDate } = props;
+    const { index, id, title, description, creationDate } = props;
 
     return (
-        <div className='Card' key={id} >
-            <h4>{title}</h4>
-            <p className='description' >{description}</p>
-            <p className='date'>{creationDate}</p>
-        </div>
+        <Draggable draggableId={id.toString()} index={index}>
+            {
+                (provided) => (
+                    <div className='Card' key={id} {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef} >
+                        <h4>{title}</h4>
+                        <p className='description' >{description}</p>
+                        <p className='date'>{creationDate}</p>
+                    </div>
+                )
+            }
+
+        </Draggable>
     )
 }
 

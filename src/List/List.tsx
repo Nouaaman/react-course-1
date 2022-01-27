@@ -1,4 +1,5 @@
 import React from 'react';
+import { Droppable } from 'react-beautiful-dnd';
 import Card from '../Card/Card';
 import "./List.css";
 // import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
@@ -17,18 +18,25 @@ const List = (props: List) => {
     const { id, title, cards } = props;
 
     return (
-        
-        <div className='list' key={id}>
-            <h2>{title}</h2>
-            <div className='cards'>
-                {cards.map((card) =>
-                    <Card key={card.id}
-                        id={card.id}
-                        title={card.title}
-                        description={card.description}
-                        creationDate={card.creationDate} />)}
-            </div>
-        </div>
+        <Droppable droppableId={id.toString()}>
+            {(provided) => (
+                <div className='list' key={id} ref={provided.innerRef}>
+                    <h2>{title}</h2>
+                    <div className='cards'>
+                        {cards.map((card, index) =>
+                            <Card key={card.id}
+                                index={index}
+                                id={card.id}
+                                title={card.title}
+                                description={card.description}
+                                creationDate={card.creationDate} />)}
+                        {provided.placeholder}
+                    </div>
+
+                </div>
+
+            )}
+        </Droppable>
     )
 }
 

@@ -3,7 +3,7 @@ import Card from '../Card/Card';
 import List from '../List/List';
 import AddCard from '../Modal/AddCard';
 import AddList from "../Modal/AddList";
-// import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+import { DragDropContext } from 'react-beautiful-dnd';
 
 import './App.css'
 
@@ -34,7 +34,7 @@ const completedList = {
     cards: [],
 }
 const App = () => {
-    const [lists, setLists] = useState<List[]>([todoList,completedList])
+    const [lists, setLists] = useState<List[]>([todoList, completedList])
     const [showAddList, setShowAddList] = useState(false)
     const [showAddCard, setShowAddCard] = useState(false)
 
@@ -48,19 +48,23 @@ const App = () => {
 
 
     return (
-        <div className='container'>
+        <DragDropContext onDragEnd={() => { }}>
+            <div className='container'>
+                <h1>TODO List</h1>
+                < div className='actions'>
+                    <button onClick={() => setShowAddList(true)}>Add List</button>
+                    <button onClick={() => setShowAddCard(true)}>Add Card</button>
+                </div>
+                <div className='lists'>
+                    {lists.map((currentElement) =>
+                        <List key={currentElement.id} id={currentElement.id} title={currentElement.title} cards={currentElement.cards} />
+                    )}
 
-            <h1>TODO List</h1>
-            <div className='actions'>
-                <button onClick={() => setShowAddList(true)}>Add List</button>
-                <button onClick={() => setShowAddCard(true)}>Add Card</button>
+                </div>
+                <AddList onSubmit={addList} show={showAddList} close={() => setShowAddList(false)} />
+                <AddCard onSubmit={addCard} show={showAddCard} close={() => setShowAddCard(false)} />
             </div>
-            <div className='lists'>
-                {lists.map((currentElement) => <List key={currentElement.id} id={currentElement.id} title={currentElement.title} cards={currentElement.cards} />)}
-            </div>
-            <AddList onSubmit={addList} show={showAddList} close={() => setShowAddList(false)} />
-            <AddCard onSubmit={addCard} show={showAddCard} close={() => setShowAddCard(false)} />
-        </div>
+        </DragDropContext>
     );
 }
 export default App;

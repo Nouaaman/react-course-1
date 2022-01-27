@@ -18,6 +18,8 @@ const CreateCard = (props: any) => {
                 description: description,
                 creationDate: new Date().toLocaleString()
             })
+            setDescription('')
+            setTitle('')
             setIsValid(true)
             props.close()
         } else {
