@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './modal.css'
-import { } from "module";
+
 
 //component
 const CreateCard = (props: any) => {
@@ -39,7 +39,7 @@ const CreateCard = (props: any) => {
                 <form className='form' onSubmit={handleSubmit}>
                     <div className='field'>
                         <label htmlFor="title">Title:</label>
-                        <input type="text" id="title" onChange={e => setTitle(e.target.value)} />
+                        <input type="text" id="title" autoFocus onChange={e => setTitle(e.target.value)} />
                     </div>
                     <div className='field'>
                         <label htmlFor="description">Description:</label>

@@ -39,7 +39,7 @@ const AddList = (props: any) => {
                 <form className='form' onSubmit={handleSubmit}>
                     <div className='field'>
                         <label htmlFor="title">Title</label>
-                        <input type="text" id="title" onChange={e => setTitle(e.target.value)} />
+                        <input type="text" id="title" autoFocus onChange={e => setTitle(e.target.value)} />
                     </div>
                     {!isValid && (
                         <p className='color-red'>all fields must be filled in.</p>

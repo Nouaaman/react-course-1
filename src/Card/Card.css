@@ -3,12 +3,49 @@
     padding: 8px;
     box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
     transition: background-color .2s;
-    border: 1px solid rgb(125, 195, 255);
-    background-color: aliceblue;
+    border: 1px solid rgb(178, 237, 255);
+    background-color: rgb(219, 237, 255);
+    border-radius: 9px;
+    position: relative;
 }
 .Card:hover{
-    background-color: rgb(247, 251, 255);
+    background-color: rgb(233, 244, 255);
 }
+.Card h4{
+    word-wrap: break-word;
+    padding-right: 50px;
+
+}
+.Card .actions{
+    display: none;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    right: 6px;
+    top: 6px;
+    gap: 3px;
+}
+.Card:hover .actions{
+    display: flex;
+}
+
+.Card .actions button{
+    width: 22px;
+    height: 22px;
+    padding: 4px;
+    border: none;
+    background-color: white;
+    margin: 0;
+    border-radius:50%;
+
+}
+.Card .actions button:hover{
+    background-color: rgb(178, 237, 255);  
+}
+.Card .actions img{
+    width: 100%;
+}
+
 p{
     width: 100%;
 }

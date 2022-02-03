@@ -1,23 +1,58 @@
 .list{
+    display: flex;
+    flex-direction: column;
      width: 260px;
-    min-height: 260px;
+    min-height: 110px;
     min-width: 220px;
-    padding: 8px;
-    padding-bottom: 28px;
-   
     
+
     background-color: #fff;
-    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
-    border: 1px solid rgb(204, 204, 204);
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 9px;
+    overflow: hidden;
    
 }
-h2{
+.list h3{
     text-align: center;
+    background-color:rgb(178, 237, 255);
+    padding:12px;
+    margin: 0;
+    position: relative;
 }
 .cards{
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content:center;
-    gap: 18px;
+    justify-content:flex-start;
+    gap: 14px;
+    flex: 1;
+    padding: 12px;
+
+}
+
+.list .actions{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    right: 6px;
+    top: 6px;
+    gap: 3px;
+}
+
+.list .actions button{
+    width: 22px;
+    height: 22px;
+    padding: 4px;
+    border: none;
+    background-color: white;
+    margin: 0;
+    border-radius:50%;
+
+}
+.list .actions button:hover{
+    background-color: rgb(226, 248, 255);  
+}
+.list .actions img{
+    width: 100%;
 }

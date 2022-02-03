@@ -1,5 +1,8 @@
 # React course 1
 
+### Student
+- first name : Nouaaman
+- last name : Roudane
 ## Getting started
 
 - Fork project to your personal repo

@@ -8,6 +8,10 @@ interface List {
     id: number,
     title: string,
     cards: any[],
+    onDeleteCard(listId: number, cardId: number): void;
+    onDeleteList(listId: number): void;
+
+
 };
 
 
@@ -16,27 +20,39 @@ const List = (props: List) => {
 
     //props
     const { id, title, cards } = props;
+    function handleDeleteCard(cardId: number) {
+        props.onDeleteCard(id, cardId)
+        // console.log('yes delete : '+cardId)
+    }
 
     return (
-        <Droppable droppableId={id.toString()}>
-            {(provided) => (
-                <div className='list' key={id} ref={provided.innerRef}>
-                    <h2>{title}</h2>
-                    <div className='cards'>
+
+        <div className='list' key={id} >
+            <h3>
+                {title}
+                <div className='actions'>
+                    {id > 3 &&
+                        <button className='delete' onClick={() => props.onDeleteList(id)}>
+                            <img src={'/assets/icon-close.png'} />
+                        </button>}
+                </div></h3>
+            <Droppable droppableId={id.toString()}>
+                {(provided) => (
+                    <div className='cards' ref={provided.innerRef}>
                         {cards.map((card, index) =>
                             <Card key={card.id}
                                 index={index}
                                 id={card.id}
                                 title={card.title}
                                 description={card.description}
-                                creationDate={card.creationDate} />)}
+                                creationDate={card.creationDate}
+                                onDeleteCard={handleDeleteCard} />)}
                         {provided.placeholder}
                     </div>
+                )}
+            </Droppable>
+        </div>
 
-                </div>
-
-            )}
-        </Droppable>
     )
 }
 
