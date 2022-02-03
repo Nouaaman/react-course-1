@@ -13,7 +13,7 @@
 }
 .Card h4{
     word-wrap: break-word;
-    padding-right: 50px;
+    margin-right: 50px;
 
 }
 .Card .actions{
@@ -48,6 +48,7 @@
 
 p{
     width: 100%;
+    word-wrap: break-word;
 }
 p.date{
     text-align: right;
@@ -55,4 +56,8 @@ p.date{
     color: rgb(73, 73, 73);
     padding-bottom: 0;
     margin: 0;
+}
+.editable {
+    background-color: #fff;
+    border: 2px solid #262626;
 }

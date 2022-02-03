@@ -46,3 +46,8 @@
     align-items: center;
     
 }
+input , textarea{
+    width: 189px;
+    max-height:260px ;
+    max-width: 230px;
+}

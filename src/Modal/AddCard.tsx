@@ -43,7 +43,7 @@ const CreateCard = (props: any) => {
                     </div>
                     <div className='field'>
                         <label htmlFor="description">Description:</label>
-                        <input type="text" id="description" onChange={e => setDescription(e.target.value)} />
+                        <textarea id="description" onChange={e => setDescription(e.target.value)} />
                     </div>
                     {!isValid && (
                         <p className='color-red'>all fields must be filled in.</p>
