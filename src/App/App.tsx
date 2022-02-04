@@ -56,7 +56,7 @@ const App = () => {
 
     //save data to local storage
     const saveToStorage = (data: List[]) => {
-        localStorage.setItem("listsData", JSON.stringify(data)); console.log('saved to local');
+        localStorage.setItem("listsData", JSON.stringify(data)); 
     }
 
     //add new list to lists array
@@ -75,6 +75,7 @@ const App = () => {
         )
 
     }
+
     //delete card on delete button click
     const handleDeleteCard = (idList: number, cardId: number) => {
         let tempLists = lists.filter((list) => {
@@ -89,12 +90,30 @@ const App = () => {
     }
     //delete list on delete button click
     const handleDeleteList = (idList: number) => {
-
         setLists(
             lists.filter(list => list.id !== idList)
         )
     }
 
+    //edit Card
+    const handleEditCard = (cardId: number, newTitle: string, newDescription: string, listId: number) => {
+        setLists(
+            lists.map(list => {
+                if (list.id === listId) {
+                    list.cards.map(card => {
+                        if (card.id === cardId) {
+                            card.title = newTitle
+                            card.description = newDescription
+                            return card
+                        }
+                        return card
+                    });
+                    return list
+                }
+                return list
+            })
+        )
+    }
 
     const onDragEnd = (result: DropResult) => {
         const { destination, source } = result
@@ -138,7 +157,8 @@ const App = () => {
                             title={currentElement.title}
                             cards={currentElement.cards}
                             onDeleteCard={handleDeleteCard}
-                            onDeleteList={handleDeleteList} />
+                            onDeleteList={handleDeleteList}
+                            onEditCard={handleEditCard} />
                     )}
 
                 </div>

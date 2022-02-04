@@ -10,7 +10,7 @@ interface List {
     cards: any[],
     onDeleteCard(listId: number, cardId: number): void;
     onDeleteList(listId: number): void;
-
+    onEditCard(cardId: number, newTitle: string, newDescription: string, listId: number): void
 
 };
 
@@ -22,7 +22,9 @@ const List = (props: List) => {
     const { id, title, cards } = props;
     function handleDeleteCard(cardId: number) {
         props.onDeleteCard(id, cardId)
-        // console.log('yes delete : '+cardId)
+    }
+    function handleEditCard(cardId: number, newTitle: string, newDescription: string) {
+        props.onEditCard(cardId, newTitle,newDescription,id)
     }
 
     return (
@@ -46,7 +48,8 @@ const List = (props: List) => {
                                 title={card.title}
                                 description={card.description}
                                 creationDate={card.creationDate}
-                                onDeleteCard={handleDeleteCard} />)}
+                                onDeleteCard={handleDeleteCard}
+                                onEditCard={handleEditCard} />)}
                         {provided.placeholder}
                     </div>
                 )}

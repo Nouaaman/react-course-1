@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Draggable } from 'react-beautiful-dnd';
 import './Card.css'
 
@@ -9,8 +9,8 @@ interface Card {
     description: string,
     creationDate: Date,
     index: number,
-    onDeleteCard(id: number): void;
-
+    onDeleteCard(id: number): void,
+    onEditCard(cardId: number, newTitle: string, newDescription: string): void
 }
 
 //component
@@ -18,7 +18,16 @@ const Card = (props: Card) => {
 
     //destructuration de props
     const { index, id, title, description, creationDate } = props;
+
     const [isEditable, setIsEditable] = useState(false)
+    const [newTitle, setNewTitle] = useState(title);
+    const [newDesctiption, setNewDescription] = useState(description);
+
+    const onEditCard = ()=>{
+        props.onEditCard(id,newTitle,newDesctiption)
+        setIsEditable(!isEditable)
+    }
+
 
     return (
         <Draggable draggableId={id.toString()} index={index}>
@@ -41,14 +50,20 @@ const Card = (props: Card) => {
                         )}
                         {isEditable && (
                             <div className='actions'>
-                                <button className='editDone' onClick={() => setIsEditable(!isEditable)}>
+                                <button className='editDone' onClick={onEditCard}>
                                     <img src={'/assets/icon-done.png'} />
                                 </button>
                             </div>
                         )}
 
-                        <h4 contentEditable={isEditable} className={isEditable ? 'editable' : ''}>{title}</h4>
-                        <p contentEditable={isEditable} className={isEditable ? 'editable' : ''}>{description}</p>
+                        <h4 contentEditable={isEditable} className={isEditable ? 'editable' : ''}
+                            onInput={e => setNewTitle(e.currentTarget.innerText)}
+                            suppressContentEditableWarning={true}
+                            >{title}</h4>
+                        <p contentEditable={isEditable} className={isEditable ? 'editable' : ''}
+                            onInput={e => setNewDescription(e.currentTarget.innerText)}
+                            suppressContentEditableWarning={true}
+                        >{description}</p>
                         <p className='date'>{creationDate}</p>
                     </div>
                 )

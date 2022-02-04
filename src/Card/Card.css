@@ -7,6 +7,7 @@
     background-color: rgb(219, 237, 255);
     border-radius: 9px;
     position: relative;
+
 }
 .Card:hover{
     background-color: rgb(233, 244, 255);
@@ -14,8 +15,14 @@
 .Card h4{
     word-wrap: break-word;
     margin-right: 50px;
+    border: 2px solid transparent;
 
 }
+.Card h4.editable {
+    background-color: #fff;
+    border: 2px solid #262626;
+}
+
 .Card .actions{
     display: none;
     justify-content: center;
@@ -49,6 +56,7 @@
 p{
     width: 100%;
     word-wrap: break-word;
+    border: 2px solid transparent;
 }
 p.date{
     text-align: right;
@@ -60,4 +68,5 @@ p.date{
 .editable {
     background-color: #fff;
     border: 2px solid #262626;
+    cursor: text;
 }
