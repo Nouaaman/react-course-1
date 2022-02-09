@@ -7,22 +7,8 @@ import { DragDropContext, DropResult } from 'react-beautiful-dnd';
 
 import './App.css'
 
-//Create Data
-// const card1 = {
-//     id: 1,
-//     title: 'todo1',
-//     description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus, mollitia. ',
-//     creationDate: new Date().toLocaleString()
-// }
-// const card2 = {
-//     id: 2,
-//     title: 'todo2',
-//     description: 'sit amet, consectetur adipisicing elit',
-//     creationDate: new Date().toLocaleString()
-// }
-// const Lists = [list];
 
-
+//default lists
 const todoList = {
     id: 1,
     title: 'Active',
@@ -38,11 +24,15 @@ const completedList = {
     title: 'Completed',
     cards: []
 }
+
+
+
 const App = () => {
     const [lists, setLists] = useState<List[]>(() => {
+        //get data from local storage
         const savedData: any = localStorage.getItem("listsData");
         const Data = JSON.parse(savedData);
-        return Data.length === 3 ? Data : [todoList, inProgressList, completedList];
+        return Data.length >= 3 ? Data : [todoList, inProgressList, completedList];
 
     })
     const [showAddList, setShowAddList] = useState(false)

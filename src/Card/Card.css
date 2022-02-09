@@ -57,6 +57,7 @@ p{
     width: 100%;
     word-wrap: break-word;
     border: 2px solid transparent;
+    white-space: pre-wrap;
 }
 p.date{
     text-align: right;
